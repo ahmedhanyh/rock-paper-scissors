@@ -19,7 +19,7 @@ function playerWon(playerSelection, computerSelection) {
     
     // Return the result
     if (playerSelection === computerSelection) {
-        return 0;
+        return null;
     } else if (playerSelection === 'rock' && computerSelection === 'paper') {
         return false;
     } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
@@ -45,7 +45,7 @@ function playRound(playerSelection, computerSelection) {
     computerSelection = computerSelection.toLowerCase();
 
     // Return the result
-    if (playerWon(playerSelection, computerSelection) === 0) {
+    if (playerWon(playerSelection, computerSelection) === null) {
         return "It's a draw";
     } else if (playerWon(playerSelection, computerSelection)) {
         return `You Win! ${playerSelection} beats ${computerSelection}`;
@@ -57,6 +57,11 @@ function playRound(playerSelection, computerSelection) {
 // Create a function to start a game consisting of five rounds
 function game() {
 
+    // Create variables to hold the player's, computer's score and player's status
+    let playerScore = 0;
+    let computerScore = 0;
+    let playerWonStatus;
+
     // Store computerPlay() result in computerSelection
     let computerSelection = computerPlay();
     
@@ -65,23 +70,47 @@ function game() {
     
     // Simulate a game round
     console.log(playRound(playerSelection, computerSelection));
+    playerWonStatus = playerWon(playerSelection, computerSelection);
+    playerScore +=  (playerWonStatus === null) ? 0 : Number(playerWonStatus);
+    computerScore += (playerWonStatus === null) ? 0 : Number(!playerWonStatus);
 
     // Repeat the steps above 4 more times
     computerSelection = computerPlay();
     playerSelection = prompt("Your turn! Choose Rock, Paper or Scissors");
     console.log(playRound(playerSelection, computerSelection));
+    playerWonStatus = playerWon(playerSelection, computerSelection);
+    playerScore +=  (playerWonStatus === null) ? 0 : Number(playerWonStatus);
+    computerScore += (playerWonStatus === null) ? 0 : Number(!playerWonStatus);
 
     computerSelection = computerPlay();
     playerSelection = prompt("Your turn! Choose Rock, Paper or Scissors");
     console.log(playRound(playerSelection, computerSelection));
+    playerWonStatus = playerWon(playerSelection, computerSelection);
+    playerScore +=  (playerWonStatus === null) ? 0 : Number(playerWonStatus);
+    computerScore += (playerWonStatus === null) ? 0 : Number(!playerWonStatus);
 
     computerSelection = computerPlay();
     playerSelection = prompt("Your turn! Choose Rock, Paper or Scissors");
     console.log(playRound(playerSelection, computerSelection));
+    playerWonStatus = playerWon(playerSelection, computerSelection);
+    playerScore +=  (playerWonStatus === null) ? 0 : Number(playerWonStatus);
+    computerScore += (playerWonStatus === null) ? 0 : Number(!playerWonStatus);
 
     computerSelection = computerPlay();
     playerSelection = prompt("Your turn! Choose Rock, Paper or Scissors");
     console.log(playRound(playerSelection, computerSelection));
+    playerWonStatus = playerWon(playerSelection, computerSelection);
+    playerScore +=  (playerWonStatus === null) ? 0 : Number(playerWonStatus);
+    computerScore += (playerWonStatus === null) ? 0 : Number(!playerWonStatus);
+
+    if (playerScore === computerScore) {
+        console.log("Draw!");
+    } else if (playerScore > computerScore) {
+        console.log("Winner!!!");
+    } else {
+        console.log("Loser!");
+    }
 }
     
-// TODO: Start the game
+// Start the game
+game();
