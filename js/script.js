@@ -25,7 +25,7 @@ function playRound(playerSelection, computerSelection) {
 
     // Return the result
     if (playerSelection === computerSelection) {
-        return "It's a tie!";
+        return "It's a draw!";
     } else if (playerSelection === 'rock' && computerSelection === 'paper') {
         return 'You Lose! Paper beats Rock';
     } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
@@ -41,12 +41,53 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-// TODO: Create a function to start a game consisting of five rounds
+// Create a function to start a game consisting of five rounds
+function game() {
 
-    // TODO: Store computerPlay() result in computerSelection
+    // Store computerPlay() result in computerSelection
+    let computerSelection = computerPlay();
+    
+    // Simulate the player's turn (by receiving user input and storing the value in playerSelection)
+    let playerSelection = prompt("Your turn! Choose Rock, Paper or Scissors");
+    
+    // Simulate a game round
+    playRound(playerSelection, computerSelection);
 
-    // TODO: Simulate the player's turn (by receiving user input and storing the value in playerSelection)
+    // Store computerPlay() result in computerSelection
+    let computerSelection = computerPlay();
+    
+    // Simulate the player's turn (by receiving user input and storing the value in playerSelection)
+    let playerSelection = prompt("Your turn! Choose Rock, Paper or Scissors");
+    
+    // Simulate a game round
+    playRound(playerSelection, computerSelection);
 
-    // TODO: Simulate a game round
+    // Store computerPlay() result in computerSelection
+    let computerSelection = computerPlay();
+    
+    // Simulate the player's turn (by receiving user input and storing the value in playerSelection)
+    let playerSelection = prompt("Your turn! Choose Rock, Paper or Scissors");
+    
+    // Simulate a game round
+    playRound(playerSelection, computerSelection);
 
+    // Store computerPlay() result in computerSelection
+    let computerSelection = computerPlay();
+    
+    // Simulate the player's turn (by receiving user input and storing the value in playerSelection)
+    let playerSelection = prompt("Your turn! Choose Rock, Paper or Scissors");
+    
+    // Simulate a game round
+    playRound(playerSelection, computerSelection);
+
+    // Store computerPlay() result in computerSelection
+    let computerSelection = computerPlay();
+    
+    // Simulate the player's turn (by receiving user input and storing the value in playerSelection)
+    let playerSelection = prompt("Your turn! Choose Rock, Paper or Scissors");
+    
+    // Simulate a game round
+    playRound(playerSelection, computerSelection);
+}
+    
 // TODO: Start the game
