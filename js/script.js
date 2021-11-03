@@ -1,18 +1,19 @@
-// Create a function that simulates the computer's turn
-function computerPlay() {
-    
-    // Generate a random number between 0 and 3 exclusively
-    let selection = Math.floor(Math.random() * 3);
-    
-    // Map each of 0, 1 and 2 to rock, paper and scissors
-    if (selection === 0) {
-        return 'rock';
-    } else if (selection === 1) {
-        return 'paper';
-    } else if (selection === 2) {
-        return 'scissors';
-    }
-}
+
+/* Global Variables */
+
+const playerScoreLabel = document.querySelector("#player-score");
+const computerScoreLabel = document.querySelector("#computer-score");
+const roundResult = document.querySelector("#round-result");
+const finalResult = document.querySelector("#final-result");
+
+let playerScore = 0,
+    computerScore = 0
+    rounds = 0;
+
+/* End of Global Variables */
+
+
+/* Helper Functions Declarations */
 
 // Create a function that checks if player has won
 function playerWon(playerSelection, computerSelection) {
@@ -35,8 +36,30 @@ function playerWon(playerSelection, computerSelection) {
     }
 }
 
+// Create a function that takes a string 'str' and capitalizes its first letter only
 function capitalize(str) {
     return str[0].toUpperCase() + str.slice(1);
+}
+
+/* End of Helper Functions Declarations */
+
+
+/* Functions Declarations */
+
+// Create a function that simulates the computer's turn
+function computerPlay() {
+    
+    // Generate a random number between 0 and 3 exclusively
+    let selection = Math.floor(Math.random() * 3);
+    
+    // Map each of 0, 1 and 2 to rock, paper and scissors
+    if (selection === 0) {
+        return 'rock';
+    } else if (selection === 1) {
+        return 'paper';
+    } else if (selection === 2) {
+        return 'scissors';
+    }
 }
 
 // Create a function to simulate a single game round
@@ -85,20 +108,17 @@ function replay() {
     computerScoreLabel.textContent = '';
     roundResult.textContent = '';
     finalResult.textContent = '';
+    finalResult.style.color = "black";
     playerScore = 0;
     computerScore = 0;
     rounds = 0;
     replayButton.setAttribute("hidden", "");
 }
 
-const playerScoreLabel = document.querySelector("#player-score");
-const computerScoreLabel = document.querySelector("#computer-score");
-const roundResult = document.querySelector("#round-result");
-const finalResult = document.querySelector("#final-result");
+/* End of Functions Declarations */
 
-let playerScore = 0,
-computerScore = 0
-rounds = 0;
+
+/* Event Listeners */
 
 const buttons = document.querySelectorAll("#btns-container .btn");
 buttons.forEach(button => button.addEventListener("click", playRound));
@@ -106,7 +126,7 @@ buttons.forEach(button => button.addEventListener("click", playRound));
 const replayButton = document.querySelector("#replay-btn");
 replayButton.addEventListener("click", replay);
 
-
+/* End of Event Listeners */
 
 
 
