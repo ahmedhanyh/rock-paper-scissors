@@ -5,35 +5,52 @@
 }
 
 body {
+    padding: 4vh 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 48px;
+}
+
+#btns-container {
+    display: flex;
+    gap: 48px;
 }
 
 .btn {
     width: 150px;
     height: 150px;
-    border: 4px solid black;
     border-radius: 50%;
     cursor: pointer;
+    transition: 1s;
 }
 
-.rock {
+.btn:hover {
+    opacity: 0.8;
+    transform: scale(1.1);
+}
+
+#rock {
     background-color: rgb(250, 62, 62);
-    border-color: red;
 }
 
-.paper {
+#paper {
     background-color: rgb(3, 184, 3);
-    border-color: green;
 }
 
-.scissors {
+#scissors {
     background-color: rgb(78, 78, 255);
-    border-color: blue;
 }
 
+#results-container {
+    font-size: large;
+    text-align: center;
+}
 
+#replay-btn {
+    width: 100px;
+    height: 100px;
+}
 
 
 

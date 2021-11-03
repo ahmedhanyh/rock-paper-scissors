@@ -36,81 +36,74 @@ function playerWon(playerSelection, computerSelection) {
 }
 
 // Create a function to simulate a single game round
-function playRound(playerSelection, computerSelection) {
-
+function playRound(e) {
+    
     // Change all playerSelection letters to lower case 
-    playerSelection = playerSelection.toLowerCase();
-
+    playerSelection = e.target.id;
+    
     // Change all computerSelection letters to lower case
-    computerSelection = computerSelection.toLowerCase();
-
+    computerSelection = computerPlay();
+    
     // Return the result
-    if (playerWon(playerSelection, computerSelection) === null) {
-        return "It's a draw";
+    if (rounds === 5) {
+        return;
+    } else if (playerWon(playerSelection, computerSelection) === null) {
+        roundResult.textContent = "Round Result: It's a draw";
+        rounds++;
     } else if (playerWon(playerSelection, computerSelection)) {
-        return `You Win! ${playerSelection} beats ${computerSelection}`;
+        roundResult.textContent = `Round Result: You Win! ${playerSelection} beats ${computerSelection}`;
+        playerScoreLabel.textContent = `Player Score: ${++playerScore}`;
+        computerScoreLabel.textContent = `Computer Score: ${computerScore}`;
+        rounds++;
     } else {
-        return `You Lose! ${computerSelection} beats ${playerSelection}`;
+        roundResult.textContent = `Round Result: You Lose! ${computerSelection} beats ${playerSelection}`;
+        playerScoreLabel.textContent = `Player Score: ${playerScore}`;
+        computerScoreLabel.textContent = `Computer Score: ${++computerScore}`;
+        rounds++;
+    }
+
+    if (rounds === 5) {
+        if (playerScore === computerScore) {
+            finalResult.textContent = "Draw!";
+        } else if (playerScore > computerScore) {
+            finalResult.textContent = "Winner!!!";
+            finalResult.style.color = "green";
+        } else {
+            finalResult.textContent = "Loser!";
+            finalResult.style.color = "red";
+        }
+        replayButton.removeAttribute("hidden");
     }
 }
 
-// Create a function to start a game consisting of five rounds
-function game() {
-
-    // Create variables to hold the player's, computer's score and player's status
-    let playerScore = 0;
-    let computerScore = 0;
-    let playerWonStatus;
-
-    // Store computerPlay() result in computerSelection
-    let computerSelection = computerPlay();
-    
-    // Simulate the player's turn (by receiving user input and storing the value in playerSelection)
-    let playerSelection = prompt("Your turn! Choose Rock, Paper or Scissors");
-    
-    // Simulate a game round
-    console.log(playRound(playerSelection, computerSelection));
-    playerWonStatus = playerWon(playerSelection, computerSelection);
-    playerScore +=  (playerWonStatus === null) ? 0 : Number(playerWonStatus);
-    computerScore += (playerWonStatus === null) ? 0 : Number(!playerWonStatus);
-
-    // Repeat the steps above 4 more times
-    computerSelection = computerPlay();
-    playerSelection = prompt("Your turn! Choose Rock, Paper or Scissors");
-    console.log(playRound(playerSelection, computerSelection));
-    playerWonStatus = playerWon(playerSelection, computerSelection);
-    playerScore +=  (playerWonStatus === null) ? 0 : Number(playerWonStatus);
-    computerScore += (playerWonStatus === null) ? 0 : Number(!playerWonStatus);
-
-    computerSelection = computerPlay();
-    playerSelection = prompt("Your turn! Choose Rock, Paper or Scissors");
-    console.log(playRound(playerSelection, computerSelection));
-    playerWonStatus = playerWon(playerSelection, computerSelection);
-    playerScore +=  (playerWonStatus === null) ? 0 : Number(playerWonStatus);
-    computerScore += (playerWonStatus === null) ? 0 : Number(!playerWonStatus);
-
-    computerSelection = computerPlay();
-    playerSelection = prompt("Your turn! Choose Rock, Paper or Scissors");
-    console.log(playRound(playerSelection, computerSelection));
-    playerWonStatus = playerWon(playerSelection, computerSelection);
-    playerScore +=  (playerWonStatus === null) ? 0 : Number(playerWonStatus);
-    computerScore += (playerWonStatus === null) ? 0 : Number(!playerWonStatus);
-
-    computerSelection = computerPlay();
-    playerSelection = prompt("Your turn! Choose Rock, Paper or Scissors");
-    console.log(playRound(playerSelection, computerSelection));
-    playerWonStatus = playerWon(playerSelection, computerSelection);
-    playerScore +=  (playerWonStatus === null) ? 0 : Number(playerWonStatus);
-    computerScore += (playerWonStatus === null) ? 0 : Number(!playerWonStatus);
-
-    if (playerScore === computerScore) {
-        console.log("Draw!");
-    } else if (playerScore > computerScore) {
-        console.log("Winner!!!");
-    } else {
-        console.log("Loser!");
-    }
+function replay() {
+    playerScoreLabel.textContent = '';    
+    computerScoreLabel.textContent = '';
+    roundResult.textContent = '';
+    finalResult.textContent = '';
+    playerScore = 0;
+    computerScore = 0;
+    rounds = 0;
+    replayButton.setAttribute("hidden", "");
 }
-    
-// Start the game
-game();
+
+const playerScoreLabel = document.querySelector("#player-score");
+const computerScoreLabel = document.querySelector("#computer-score");
+const roundResult = document.querySelector("#round-result");
+const finalResult = document.querySelector("#final-result");
+
+let playerScore = 0,
+computerScore = 0
+rounds = 0;
+
+const buttons = document.querySelectorAll("#btns-container .btn");
+buttons.forEach(button => button.addEventListener("click", playRound));
+
+const replayButton = document.querySelector("#replay-btn");
+replayButton.addEventListener("click", replay);
+
+
+
+
+
+
