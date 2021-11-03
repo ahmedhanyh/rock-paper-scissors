@@ -35,6 +35,10 @@ function playerWon(playerSelection, computerSelection) {
     }
 }
 
+function capitalize(str) {
+    return str[0].toUpperCase() + str.slice(1);
+}
+
 // Create a function to simulate a single game round
 function playRound(e) {
     
@@ -51,12 +55,12 @@ function playRound(e) {
         roundResult.textContent = "Round Result: It's a draw";
         rounds++;
     } else if (playerWon(playerSelection, computerSelection)) {
-        roundResult.textContent = `Round Result: You Win! ${playerSelection} beats ${computerSelection}`;
+        roundResult.textContent = `Round Result: You Win! ${capitalize(playerSelection)} beats ${capitalize(computerSelection)}`;
         playerScoreLabel.textContent = `Player Score: ${++playerScore}`;
         computerScoreLabel.textContent = `Computer Score: ${computerScore}`;
         rounds++;
     } else {
-        roundResult.textContent = `Round Result: You Lose! ${computerSelection} beats ${playerSelection}`;
+        roundResult.textContent = `Round Result: You Lose! ${capitalize(computerSelection)} beats ${capitalize(playerSelection)}`;
         playerScoreLabel.textContent = `Player Score: ${playerScore}`;
         computerScoreLabel.textContent = `Computer Score: ${++computerScore}`;
         rounds++;
